@@ -22,8 +22,8 @@ class LinkedListTest < Minitest::Test
 
   def test_it_can_add_different_data_to_list
     list = LinkedList.new
-    list.append("beep")
-    assert_equal "beep", list.head.data #why list.data doesn't work?
+    list.append("deep")
+    assert_equal "deep", list.head.data #why list.data doesn't work?
   end
 
   def test_head_becomes_node_with_data
@@ -36,13 +36,13 @@ class LinkedListTest < Minitest::Test
 
   def test_next_node_is_nil
     list = LinkedList.new
-    list.append("bang")
+    list.append("doop")
     assert_equal nil, list.next_node
   end
 
   def test_next_node_to_head_is_nil
     list = LinkedList.new
-    list.append("bang")
+    list.append("doop")
     assert_equal nil, list.head.next_node
   end
 
@@ -58,7 +58,7 @@ class LinkedListTest < Minitest::Test
     list = LinkedList.new
     list.append("doop")
     assert_equal 1, list.count
-    list.append("beep")
+    list.append("deep")
     assert_equal 2, list.count
   end
 
@@ -66,7 +66,26 @@ class LinkedListTest < Minitest::Test
     list = LinkedList.new
     assert_equal "", list.to_string
     list.append("doop")
-    list.append("beep")
-    assert_equal "doop beep", list.to_string
+    list.append("deep")
+    assert_equal "doop deep", list.to_string
   end
+
+  def test_it_can_prepend_data_to_list
+    list = LinkedList.new
+    list.append("plop")
+    list.to_string
+    list.append("suu")
+    list.prepend("dop")
+    assert_equal "dop plop suu", list.to_string
+  end
+
+  def test_it_can_insert_data_in_list
+    list = LinkedList.new
+    list.append("plop")
+    list.append("suu")
+    list.prepend("dop")
+    list.insert(1, "woo")
+    assert_equal "dop woo plop suu", list.to_string
+  end
+
 end
