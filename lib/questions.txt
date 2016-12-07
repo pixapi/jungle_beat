@@ -1,6 +1,0 @@
-Avoid using other ruby collections (Arrays, Hashes, etc) for the storage of your
-beats. That’s where you’re supposed to use the linked list. But having Arrays
-elsewhere in your code, or using methods that return arrays (like .split) are
-totally ok.
-# But Joshua in his video is using array for a LinkedList project
-# Explanation of Ruby Sitepoint (link provided) is also using array
