@@ -5,34 +5,36 @@ class LinkedList
   attr_reader :head,
               :next_node,
               :count,
-              :content
+              :content,
+              :beats_appended,
+              :beats_prepended
 
   def initialize
     @head = nil
     @count = 0
     @content = []
+    @beats_appended = 0
+    @beats_prepended = 0
+    @valid_beats = "tee dee deep bop boop la na doo dop ditt woo hoo shu sham ding plop blop shi doop suu"
+  end
+
+  def head_nil(data)
+    @head = Node.new(data) if @head.nil?
   end
 
   def append(data)
-    if @head.nil?
-      @head = Node.new(data)
+    if head_nil(data)
     else
       current_node = @head
-        until current_node.next_node == nil
-          current_node = current_node.next_node
-        end
+      until current_node.next_node == nil
+        current_node = current_node.next_node
+      end
       current_node.next_node = Node.new(data)
     end
-    @count += 1
     @content << data
+    @count += 1
+    @beats_appended += 1
   end
-
-  # def add_node_to_list (current_node, new_node)
-  # if current_node.next_node.nil?
-  #   current_node.next_node = next_node
-  # else
-  #   call add_node(current_node.next_node, new_node)
-  # end
 
   def to_string
     @content.join(" ")
@@ -41,8 +43,8 @@ class LinkedList
   def prepend(data)
     @count += 1
     @content.unshift(data)
-    if @head.nil?
-      @head = Node.new(data)
+    @beats_prepended += 1
+    if head_nil(data)
     else
       @head.next_node = Node.new(data)
       @head.next_node = @head.data

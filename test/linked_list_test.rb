@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/linked_list'
 
 class LinkedListTest < Minitest::Test
+
   def test_it_can_create_lists
     list = LinkedList.new
     assert_instance_of LinkedList, list
@@ -30,12 +31,6 @@ class LinkedListTest < Minitest::Test
     assert_equal "deep", list.head.data
   end
 
-  def test_next_node_is_nil
-    list = LinkedList.new
-    list.append("doop")
-    assert_equal nil, list.next_node
-  end
-
   def test_next_node_to_head_is_nil
     list = LinkedList.new
     list.append("doop")
@@ -45,7 +40,6 @@ class LinkedListTest < Minitest::Test
   def test_it_displays_number_elements_of_list
     list = LinkedList.new
     list.append("doop")
-    assert_equal 1, list.count
     list.append("deep")
     assert_equal 2, list.count
   end
@@ -58,7 +52,7 @@ class LinkedListTest < Minitest::Test
     assert_equal "doop deep", list.to_string
   end
 
-  def test_it_can_add_data_to_the_front_of_list
+  def test_it_can_also_add_data_to_front_of_list
     list = LinkedList.new
     list.append("plop")
     list.append("suu")
@@ -66,7 +60,7 @@ class LinkedListTest < Minitest::Test
     assert_equal "dop plop suu", list.to_string
   end
 
-  def test_it_can_insert_data_in_list
+  def test_it_can_also_insert_data_in_a_positon_of_list
     list = LinkedList.new
     list.append("plop")
     list.append("suu")
@@ -95,7 +89,7 @@ class LinkedListTest < Minitest::Test
     refute list.include?("dep")
   end
 
-  def test_it_can_delete_last_element_of_list
+  def test_it_can_delete_elements_from_end_of_list
     list = LinkedList.new
     list.append("deep")
     list.append("woo")
@@ -107,4 +101,5 @@ class LinkedListTest < Minitest::Test
     assert_equal "shu", list.pop
     assert_equal "deep woo shi", list.to_string
   end
+
 end

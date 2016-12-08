@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/jungle_beat'
 
 class JungleBeatTest < Minitest::Test
+
   def test_it_can_create_jungle_beats
     jb = JungleBeat.new
     assert_instance_of JungleBeat, jb
@@ -81,4 +82,23 @@ class JungleBeatTest < Minitest::Test
     jb.reset_voice
     assert_equal "Boing", jb.voice
   end
+
+  def test_displays_beats_in_list
+    jb = JungleBeat.new
+    jb.append("deep")
+    assert_equal "deep", jb.all
+  end
+
+  def test_it_reject_an_invalid_beat
+    jb = JungleBeat.new
+    assert_equal 0, jb.append("Mississippi")
+  end
+
+  def test_it_rejects_invalid_beat_from_collection
+    jb = JungleBeat.new
+    jb.append("deep")
+    assert_equal 3, jb.prepend("tee tee tee Mississippi")
+    assert_equal "tee tee tee deep", jb.all
+  end
+
 end

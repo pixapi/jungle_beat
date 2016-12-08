@@ -11,18 +11,36 @@ class JungleBeat
     @list = LinkedList.new
     @rate = 500
     @voice = "Boing"
+    @valid_beats = "tee dee deep bop boop la na doo dop ditt woo hoo shu sham ding plop blop shi doop suu"
   end
 
   def append(data)
     elements = data.split(" ")
-
     elements.each do |element|
-      list.append(element)
+      if @valid_beats.include?(element)
+        list.append(element)
+      end
     end
+  list.beats_appended
   end
+
+  def prepend(data)
+    elements = data.split(" ")
+    elements.each do |element|
+      if @valid_beats.include?(element)
+        list.prepend(element)
+      end
+    end
+  list.beats_prepended
+  end
+
 
   def count
     list.count
+  end
+
+  def all
+    list.to_string
   end
 
   def play
@@ -46,8 +64,8 @@ class JungleBeat
 
   def choose_voice
     puts "Choose the voice of the play: Boing or Alice"
-    input = gets.chomp
-    if input != "Boing" && input != "Alice"
+    input = gets.chomp.downcase
+    if input != "boing" && input != "alice"
       choose_voice
     else
       @voice = input
