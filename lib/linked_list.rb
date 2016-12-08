@@ -4,7 +4,8 @@ require 'pry'
 class LinkedList
   attr_reader :head,
               :next_node,
-              :count
+              :count,
+              :content
 
   def initialize
     @head = nil
@@ -16,15 +17,22 @@ class LinkedList
     if @head.nil?
       @head = Node.new(data)
     else
-      current_node = @head #we say that the head is current node
+      current_node = @head
         until current_node.next_node == nil
-          current_node = current_node.next_node #a way of moving through the linkedlist
+          current_node = current_node.next_node
         end
       current_node.next_node = Node.new(data)
     end
     @count += 1
     @content << data
   end
+
+  # def add_node_to_list (current_node, new_node)
+  # if current_node.next_node.nil?
+  #   current_node.next_node = next_node
+  # else
+  #   call add_node(current_node.next_node, new_node)
+  # end
 
   def to_string
     @content.join(" ")
@@ -56,8 +64,6 @@ class LinkedList
   end
 
   def find(position, num)
-    # Option 1: @content[position, num].join(" ")
-    # Option 2:
     current_node = @head
     result = ""
     position.times do
@@ -69,10 +75,9 @@ class LinkedList
     end
     result.rstrip
   end
+  # Option 2 for find method is: @content[position, num].join(" ")
 
   def include?(data)
-    #Option 1: @content.index(data) != nil
-    #Option 2:
     current_node = @head
     found = 0
     until current_node.next_node == nil
@@ -86,6 +91,7 @@ class LinkedList
     else
       false
     end
+  #Option 2 for include? method is: @content.index(data) != nil
   end
 
   def pop
@@ -95,7 +101,7 @@ class LinkedList
       end
     deleted_node = current_node.next_node.data
     current_node.next_node = nil
-    @content.pop #necessary to do the one below and create deleted_node?
+    @content.pop
     deleted_node
   end
 

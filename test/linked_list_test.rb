@@ -30,13 +30,6 @@ class LinkedListTest < Minitest::Test
     assert_equal "deep", list.head.data
   end
 
-  # def test_head_becomes_node_with_data
-  #   # list = LinkedList.new
-  #   # list.append("doop")
-  #   # expected = <Node...>
-  #   # assert_equal "doop", list.head
-  # end
-
   def test_next_node_is_nil
     list = LinkedList.new
     list.append("doop")
@@ -48,13 +41,6 @@ class LinkedListTest < Minitest::Test
     list.append("doop")
     assert_equal nil, list.head.next_node
   end
-
-  # def test_it_displays_list
-  #   # list = LinkedList.new
-  #   # list.append("doop")
-  #   # expected = <LinkedList...>
-  #   # assert_equal expected, list
-  # end
 
   def test_it_displays_number_elements_of_list
     list = LinkedList.new
@@ -72,10 +58,9 @@ class LinkedListTest < Minitest::Test
     assert_equal "doop deep", list.to_string
   end
 
-  def test_it_can_prepend_data_to_list
+  def test_it_can_add_data_to_the_front_of_list
     list = LinkedList.new
     list.append("plop")
-    list.to_string
     list.append("suu")
     list.prepend("dop")
     assert_equal "dop plop suu", list.to_string
@@ -106,8 +91,8 @@ class LinkedListTest < Minitest::Test
     list.append("blop")
     list.append("deep")
     list.append("shu")
-    assert_equal true, list.include?("deep")
-    assert_equal false, list.include?("dep")
+    assert list.include?("deep")
+    refute list.include?("dep")
   end
 
   def test_it_can_delete_last_element_of_list
